@@ -1,24 +1,28 @@
 import logo from './logo.svg';
 import './App.css';
+import {BrowserRouter,Route,Routes} from "react-router-dom"
+import {Home} from "./Components/Home"
+import {SignUp} from './Components/SignUp';
+import { Login } from './Components/Login';
+import{ NotFound} from "./Components/Notfound";
+import {app} from "./Components/Config"
+import {AddProduct} from "./Components/AddProduct"
+import {Cart}from "./Components/Cart"
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+    <Routes>
+      <Route exact path="/" element={<Home/>}></Route>
+  <> Ecommerce Sites with react hook and firebase</>
+  <Route path="/signup" element={<SignUp/>}></Route>
+  <Route path="/Login" element={<Login/>}></Route>
+  <Route path="/product" element={<AddProduct/>}></Route>
+  <Route path="/cart" element ={<Cart/>}></Route>
+<Route path='*' element={<NotFound/>}></Route>
+</Routes>
+  </BrowserRouter>
   );
 }
 
