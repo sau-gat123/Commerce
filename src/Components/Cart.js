@@ -6,9 +6,10 @@ import { onAuthStateChanged} from 'firebase/auth'
 import { getDoc,doc,data } from 'firebase/firestore'
 import {auth,fs} from "./Config"
 import { onSnapshot,collection,docs } from 'firebase/firestore'
+import { CartProduct } from './CartProduct'
 
 const Cart = () => {
-    const[cartProduct,setCartProduct]=useState(null);
+    const[cartProduct,setCartProduct]=useState([]);
      // getin current user  uid
   
     
@@ -88,7 +89,27 @@ const Cart = () => {
   
   
   <Navbar  current={current}/>
+  <br></br>
+  {cartProduct.length>1 && <>
+  <div className='container-fluid'>
+    <h1 className='text-center'> 
+    <CartProduct cartProduct={cartProduct}/>
+
+    </h1>
+    <div className='products-box'></div>
+
+  </div>
   
+  </>}
+  {cartProduct.length<1 &&<>
+  <div className='container-fluid'>No Product
+
+
+  </div>
+  
+  
+  </>}
+ 
   </>
    
   )

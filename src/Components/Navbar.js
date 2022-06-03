@@ -23,10 +23,18 @@ const Navbar = ({current}) => {
     <div className="navbar">
       <div className='leftside'>
         <div className='logo'>
-          <Link  className='navlink' to="/cart">
-          <img src={Icons} alt="logo"/> 
-          </Link >
 
+          <Link className='navLink' to="/">
+          <img src={Icons} alt="logo"/> 
+         </Link>
+{
+  
+ 
+  
+  
+  
+
+}
         </div>
         </div>
         <div className='rightside'>
@@ -39,7 +47,7 @@ const Navbar = ({current}) => {
        {current&&<>
                     <div><Link className='navlink' to="/">{current}</Link></div>
                     <div className='cart-menu-btn'>
-                        <Link className='navlink' to="">
+                        <Link className='navlink' to="/cart">
                           <Icon icon={shoppingCart} size="20"></Icon>
                           
                         </Link>
