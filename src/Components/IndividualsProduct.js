@@ -1,4 +1,5 @@
 import React from 'react'
+import "./IndividualsCart.css"
 
 const IndividualsProduct = ({products,AddToCart}) => {
       
@@ -18,8 +19,10 @@ const IndividualsProduct = ({products,AddToCart}) => {
         
        
          
-
-      <div className='card' >
+    <div className='grid'>
+      
+<div className='item'>
+      
       
 
         <div className='product-img'>
@@ -32,6 +35,8 @@ const IndividualsProduct = ({products,AddToCart}) => {
         <button className='btn btn-danger btn-md cart-btn' onClick={handleAddTOCart} >Add to cart</button>
         </div>
         </div>
+        </div>
+        
        
 
 

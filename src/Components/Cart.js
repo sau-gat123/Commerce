@@ -9,6 +9,7 @@ import { onSnapshot,collection,docs } from 'firebase/firestore'
 import { CartProduct } from './CartProduct'
 
 const Cart = () => {
+
     const[cartProduct,setCartProduct]=useState([]);
      // getin current user  uid
   
@@ -77,7 +78,12 @@ const Cart = () => {
      
    
          
-          
+         //CartProductIncrease
+         const cartProductIncrease=(cartProduct)=>
+         {
+           console.log(cartProduct);
+
+         } 
        
       
 
@@ -93,7 +99,7 @@ const Cart = () => {
   {cartProduct.length>1 && <>
   <div className='container-fluid'>
     <h1 className='text-center'> 
-    <CartProduct cartProduct={cartProduct}/>
+    <CartProduct cartProduct={cartProduct} cartProductIncrease={cartProductIncrease}/>
 
     </h1>
     <div className='products-box'></div>

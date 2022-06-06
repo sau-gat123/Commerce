@@ -2,13 +2,22 @@ import React from 'react'
 import {Icon} from 'react-icons-kit'
 import {plus} from 'react-icons-kit/feather/plus'
 import {minus} from 'react-icons-kit/feather/minus'
+import { Grid } from '@mui/material';
+import "./IndividualsCart.css"
+const IndividualCartProduct = ({cartProduct,cartProductIncrease}) => {
+  const handleCartProductIncrease=()=>{
+    cartProductIncrease(cartProduct);
 
-const IndividualCartProduct = ({cartProduct}) => {
+
+  }
     console.log( "s",cartProduct);
   return (
-      
+      <>
+      <Grid container spacing={3}>
+        <Grid item xs>
+          
     <div>
-        
+    
        <div className='product'>
             <div className='product-img'>
                 <img src={cartProduct.downloadURL} alt="product-img"/>
@@ -23,7 +32,7 @@ const IndividualCartProduct = ({cartProduct}) => {
                     
                 </div>                
                 <div></div>               
-                <div className='action-btns plus' >
+                <div className='action-btns plus' onClick={handleCartProductIncrease} >
                 <Icon icon={plus} size={20}/>
                    
                 </div>
@@ -33,6 +42,10 @@ const IndividualCartProduct = ({cartProduct}) => {
         </div>
       
     </div>
+    
+    </Grid>
+    </Grid>
+    </>
   )
 }
 
