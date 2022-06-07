@@ -3,10 +3,11 @@ import React from 'react'
 import {Navbar} from "./Navbar"
 import { useState,useEffect } from 'react'
 import { onAuthStateChanged} from 'firebase/auth'
-import { getDoc,doc,data } from 'firebase/firestore'
+import { getDoc,doc,data, updateDoc } from 'firebase/firestore'
 import {auth,fs} from "./Config"
 import { onSnapshot,collection,docs } from 'firebase/firestore'
 import { CartProduct } from './CartProduct'
+import { async } from '@firebase/util'
 
 const Cart = () => {
 
@@ -76,12 +77,32 @@ const Cart = () => {
          console.log( cartProduct)   
    
      
-   
+   let prdt
          
          //CartProductIncrease
          const cartProductIncrease=(cartProduct)=>
          {
            console.log(cartProduct);
+        prdt=cartProduct;
+        prdt.qty=prdt.qty+1;
+        prdt.total=prdt.qty *prdt.price;
+        onAuthStateChanged(auth,async (user)=>{
+          if(user){
+           // doc(fs,"user"+user.uid,cartProduct.ID)
+            await updateDoc(  doc(fs,"user"+user.uid,cartProduct.ID),prdt)
+            await console.log("incremented")
+
+            
+
+
+          }
+          else{
+            console.log("user not logged in")
+          }
+
+
+        })
+
 
          } 
        

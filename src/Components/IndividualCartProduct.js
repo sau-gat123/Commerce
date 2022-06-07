@@ -27,11 +27,12 @@ const IndividualCartProduct = ({cartProduct,cartProductIncrease}) => {
             <div className='product-text price'>${cartProduct.price}</div>
             <span>Quantity</span>
             <div className='product-text quantity-box'>
+
                 <div className='action-btns minus' >
                 <Icon icon={minus} size={20}/>
                     
                 </div>                
-                <div></div>               
+                <div>{cartProduct.qty}</div>               
                 <div className='action-btns plus' onClick={handleCartProductIncrease} >
                 <Icon icon={plus} size={20}/>
                    
