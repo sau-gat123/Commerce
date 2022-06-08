@@ -105,6 +105,32 @@ const Cart = () => {
 
 
          } 
+         //cart Product Decrease functionaliy
+         const  cartProductDecrease=(cartProduct)=>{
+           prdt=cartProduct
+           if(prdt.qty>1){
+            prdt.qty=prdt.qty-1;
+            prdt.total=prdt.qty *prdt.price;
+            onAuthStateChanged(auth,async (user)=>{
+              if(user){
+               // doc(fs,"user"+user.uid,cartProduct.ID)
+                await updateDoc(  doc(fs,"user"+user.uid,cartProduct.ID),prdt)
+                await console.log("Decremented")
+    
+                
+    
+    
+              }
+              else{
+                console.log("user not logged in")
+              }
+    
+    
+            })
+
+           }
+
+         }
        
       
 
@@ -120,7 +146,7 @@ const Cart = () => {
   {cartProduct.length>1 && <>
   <div className='container-fluid'>
     <h1 className='text-center'> 
-    <CartProduct cartProduct={cartProduct} cartProductIncrease={cartProductIncrease}/>
+    <CartProduct cartProduct={cartProduct} cartProductIncrease={cartProductIncrease} cartProductDecrease={cartProductDecrease}/>
 
     </h1>
     <div className='products-box'></div>

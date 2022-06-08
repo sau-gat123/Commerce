@@ -3,11 +3,42 @@ import {Icon} from 'react-icons-kit'
 import {plus} from 'react-icons-kit/feather/plus'
 import {minus} from 'react-icons-kit/feather/minus'
 import { Grid } from '@mui/material';
+import {auth,fs} from "./Config"
+
+
+
+import { deleteDoc,doc} from 'firebase/firestore';
 import "./IndividualsCart.css"
-const IndividualCartProduct = ({cartProduct,cartProductIncrease}) => {
+import { onAuthStateChanged } from 'firebase/auth';
+const IndividualCartProduct = ({cartProduct,cartProductIncrease, cartProductDecrease}) => {
   const handleCartProductIncrease=()=>{
     cartProductIncrease(cartProduct);
 
+
+  }
+  const handleCartProductDecrease=()=>{
+    cartProductDecrease(cartProduct);
+  }
+  const handleCartProductDelete=()=>{
+    console.log("ok")
+    onAuthStateChanged(auth,async (user)=>{
+      if(user){
+        doc(fs,"user"+user.uid,cartProduct.ID)
+        await deleteDoc(  doc(fs,"user"+user.uid,cartProduct.ID))
+
+       
+        await console.log("Deleted successfully")
+
+        
+
+
+      }
+      else{
+        console.log("user not logged in")
+      }
+
+
+    })
 
   }
     console.log( "s",cartProduct);
@@ -28,7 +59,7 @@ const IndividualCartProduct = ({cartProduct,cartProductIncrease}) => {
             <span>Quantity</span>
             <div className='product-text quantity-box'>
 
-                <div className='action-btns minus' >
+                <div className='action-btns minus'   onClick={handleCartProductDecrease}>
                 <Icon icon={minus} size={20}/>
                     
                 </div>                
@@ -39,7 +70,7 @@ const IndividualCartProduct = ({cartProduct,cartProductIncrease}) => {
                 </div>
             </div>
             <div className='product-text cart-price'>$ {cartProduct.total}</div>
-            <div className='btn btn-danger btn-md cart-btn'>DELETE</div>            
+            <div className='btn btn-danger btn-md cart-btn' onClick={handleCartProductDelete}>DELETE</div>            
         </div>
       
     </div>
