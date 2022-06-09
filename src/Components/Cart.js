@@ -8,6 +8,7 @@ import {auth,fs} from "./Config"
 import { onSnapshot,collection,docs } from 'firebase/firestore'
 import { CartProduct } from './CartProduct'
 import { async } from '@firebase/util'
+import StripeCheckout from 'react-stripe-checkout';
 
 const Cart = () => {
 
@@ -74,8 +75,26 @@ const Cart = () => {
       
 
   },[])
-         console.log( cartProduct)   
-   
+         console.log("s",cartProduct)   
+     // gettting the product quanity in seoerate array
+     const Qty=cartProduct.map((cartProduct)=>{
+       return cartProduct.qty;
+
+     })  
+     //console.log("p",reduceQty);  
+   //reducing the quantity in single Value
+
+   const reduceOfQty=(accumulator,currentValue)=>accumulator+ currentValue;
+    const totalQty=Qty.reduce(reduceOfQty,0);
+     console.log(totalQty);
+     //getting the product price   in a seperate array
+     const Price =cartProduct.map((cartProduct)=>{
+       return cartProduct.total;
+
+     })
+     //console.log("total",totalPrice);
+     const reducePrice= (accumulator,currentValue)=>accumulator + currentValue;
+     const TotalPrice=Price.reduce(reducePrice);
      
    let prdt
          
@@ -149,11 +168,32 @@ const Cart = () => {
     <CartProduct cartProduct={cartProduct} cartProductIncrease={cartProductIncrease} cartProductDecrease={cartProductDecrease}/>
 
     </h1>
-    <div className='products-box'></div>
+    <div className='products-box'>
+      
+    </div>
 
   </div>
+  <>
+  <div className='summary-box'>
+  <h5>Cart Summary</h5>
+                        <br></br>
+                        <div>
+                        Total No of Products: <span>{totalQty}</span>
+                        </div>
+                        <div>
+                        Total Price to Pay: <span>{TotalPrice}</span>
+                        </div>
+                        <br></br>
+                        <StripeCheckout 
+                        
+                        >
+                          <button className='btn btn-success'>Pay with card</button>
+                        </StripeCheckout>
+                    </div>  
+  </>
   
   </>}
+  
   {cartProduct.length<1 &&<>
   <div className='container-fluid'>No Product
 

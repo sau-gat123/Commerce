@@ -4,6 +4,7 @@ import {plus} from 'react-icons-kit/feather/plus'
 import {minus} from 'react-icons-kit/feather/minus'
 import { Grid } from '@mui/material';
 import {auth,fs} from "./Config"
+import  {StripeCheckOut} from "react-stripe-checkout"
 
 
 
