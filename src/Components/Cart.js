@@ -88,13 +88,13 @@ const Cart = () => {
     const totalQty=Qty.reduce(reduceOfQty,0);
      console.log(totalQty);
      //getting the product price   in a seperate array
-     const Price =cartProduct.map((cartProduct)=>{
+    const Price =cartProduct.map((cartProduct)=>{
        return cartProduct.total;
 
      })
-     //console.log("total",totalPrice);
+    console.log("total",Price);
      const reducePrice= (accumulator,currentValue)=>accumulator + currentValue;
-     const TotalPrice=Price.reduce(reducePrice);
+     const TotalPrice=Price.reduce(reducePrice,0)
      
    let prdt
          
@@ -151,8 +151,12 @@ const Cart = () => {
 
          }
        
-      
+      // charging Payment 
+      const handleToken=(token)=>{
+        console.log(token);
 
+      }
+const key="pk_test_51L927lSGxWwnG8rhtspkqDAQn7wdaUHRuHVyzlTf4IclRSlp2r8mby5Ojf9aNIqxXFhjJVIOz52tj4O2rSfvqehj00LTpZ6vEk"
  
          
 
@@ -181,11 +185,16 @@ const Cart = () => {
                         Total No of Products: <span>{totalQty}</span>
                         </div>
                         <div>
-                        Total Price to Pay: <span>{TotalPrice}</span>
+                        Total Price to Pay: <span>${TotalPrice}</span>
                         </div>
                         <br></br>
                         <StripeCheckout 
-                        
+                        stripeKey={key}
+                        token={handleToken}
+                        billingAddress
+                        shippingAddress
+                        name='All Products'
+                        amount={TotalPrice*100}
                         >
                           <button className='btn btn-success'>Pay with card</button>
                         </StripeCheckout>

@@ -5,7 +5,7 @@ import {Link,useNavigate} from "react-router-dom"
 import {auth,fs} from "./Config"
 import {useState,useEffect} from "react"
 import {onAuthStateChanged}from "firebase/auth"
-import { collection,doc, getDoc,docs, getDocs,setDoc } from "firebase/firestore";
+import { collection,doc, getDoc,docs, getDocs,setDoc ,onSnapshot} from "firebase/firestore";
 import { async } from '@firebase/util'
 
 
@@ -111,6 +111,48 @@ useEffect(()=>{
 
 
 },[])
+//state of Total Product
+const [TotalProduct,setTotalProduct]=useState(0);
+//getting cart Producty
+
+useEffect(()=>{
+  onAuthStateChanged(auth,((user)=>{
+    if(user){
+      const unsub = onSnapshot(collection(fs, "user"+user.uid), (snapshot) => {
+        const qty=snapshot.docs.length;
+        setTotalProduct(qty);
+
+          
+              
+            
+           
+              
+
+          }
+      
+       
+      )} 
+          
+          
+      
+
+    
+    else{
+        console.log("no user")
+
+    }
+
+
+  }))
+
+
+
+},[])
+//console.log(TotalProduct);
+
+
+
+
 
 
 let Productsss
@@ -156,7 +198,7 @@ let Productsss
 
   return (
     <div>
-     <Navbar current={current}/>
+     <Navbar current={current} TotalProduct={TotalProduct}/>
  <br></br>
  {product.length>0 &&<>
   <div className='container-fluid'>

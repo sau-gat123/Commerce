@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom'
 
 
 
-const Navbar = ({current}) => {
+const Navbar = ({current,TotalProduct}) => {
   const navigate=useNavigate()
   const HandleLogut=async()=>{
      const  Logout=  await signOut(auth) 
@@ -26,6 +26,7 @@ const Navbar = ({current}) => {
 
           <Link className='navLink' to="/">
           <img src={Icons} alt="logo"/> 
+
          </Link>
 {
   
@@ -51,7 +52,7 @@ const Navbar = ({current}) => {
                           <Icon icon={shoppingCart} size="20"></Icon>
                           
                         </Link>
-                        {/* <span className='cart-indicator'>{totalQty}</span> */}
+                        <span className='cart-indicator'>{TotalProduct}</span> 
                     </div>
                     <div className='btn btn-danger btn-md'
                     onClick={HandleLogut}>LOGOUT</div>
