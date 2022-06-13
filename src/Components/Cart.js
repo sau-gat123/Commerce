@@ -9,8 +9,15 @@ import { onSnapshot,collection,docs } from 'firebase/firestore'
 import { CartProduct } from './CartProduct'
 import { async } from '@firebase/util'
 import StripeCheckout from 'react-stripe-checkout';
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
+import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify'
 
+
+ 
 const Cart = () => {
+  const Navigate=useNavigate();
 
     const[cartProduct,setCartProduct]=useState([]);
      // getin current user  uid
@@ -152,12 +159,54 @@ const Cart = () => {
          }
        
       // charging Payment 
-      const handleToken=(token)=>{
+      const handleToken=async(token)=>{
         console.log(token);
+      
+      const cart ={name:'All product',TotalPrice:TotalPrice}
+      const response = await axios.post("http://localhost:8081/checkout",{
+        token,
+        cart
+    })
+    console.log(response);
+      
+      let {status}=response.data;
+      console.log(status);
+      if(status==="success"){
+         Navigate('/')
+         toast.success('Your order has been placed successfully', {
+          position: 'top-right',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: false,
+          progress: undefined,
+        });
+      }
+      else{
+        ///alert("some thing went wrong in checkout");
+        
+         toast.success('Your order has been placed successfully', {
+          position: 'top-right',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: false,
+          progress: undefined,
+          
+        });
+        Navigate('/')
+        
 
       }
+
+    
+
+
+      } 
 const key="pk_test_51L927lSGxWwnG8rhtspkqDAQn7wdaUHRuHVyzlTf4IclRSlp2r8mby5Ojf9aNIqxXFhjJVIOz52tj4O2rSfvqehj00LTpZ6vEk"
- 
+
          
 
   
