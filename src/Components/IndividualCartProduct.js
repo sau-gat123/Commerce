@@ -9,7 +9,7 @@ import  {StripeCheckOut} from "react-stripe-checkout"
 
 
 import { deleteDoc,doc} from 'firebase/firestore';
-import "./IndividualsCart.css"
+//import "./IndividualsCart.css"
 import { onAuthStateChanged } from 'firebase/auth';
 const IndividualCartProduct = ({cartProduct,cartProductIncrease, cartProductDecrease}) => {
   const handleCartProductIncrease=()=>{

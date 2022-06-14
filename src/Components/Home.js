@@ -7,6 +7,7 @@ import {useState,useEffect} from "react"
 import {onAuthStateChanged}from "firebase/auth"
 import { collection,doc, getDoc,docs, getDocs,setDoc ,onSnapshot} from "firebase/firestore";
 import { async } from '@firebase/util'
+import { IndividualsFilterProduct } from './IndividualsFilterProduct'
 
 
 
@@ -178,8 +179,9 @@ let Productsss
 }
 
 
+// filtered product States
 
-
+const [filterProduct,setFilterProduct]=useState([]);
 
 
 
@@ -200,22 +202,76 @@ let Productsss
     <div>
      <Navbar current={current} TotalProduct={TotalProduct}/>
  <br></br>
- {product.length>0 &&<>
-  <div className='container-fluid'>
+ 
+  <div className='filter'>
 
-   <h1 className='text-center'>Product</h1>
-   <Product products={product} AddToCart={AddToCart}/>
+<uL>
+<li>Men</li>
+<li>Women</li>
+<li>Casual</li>
+<li>Formal</li>
+<li>Winter</li>
+<li>Summer</li>
+</uL>
+
+
+  </div>
   
+  {
+  filterProduct.length>0 &&(<>
+  <IndividualsFilterProduct/>
+  </>)
+
+
+  }
+  {
+    filterProduct<1&&(
+      <>
+      {product.length>0 && (<>
+      <div className='my-product'>
+        <h1 className='text-center' >All Product</h1>
+        <div className='product-box'>
+          <Product products={product} AddToCart={AddToCart}/>
+
+
+        </div>
+
+      </div>
+      
+      
+      </>)
+     
+      
+      
+      }
+   {
+    product.length<1&&(<>
+    <div className='my-products please-wait'>Please Wait....</div>
+    
+    
+    
+    </>)
+   }
+      
+      </>
+    )
+    
+  }
+
+
+
+
+
+
 
  </div>
- </>
 
- }
+
  
  
  
  
-    </div>
+ 
   )
 }
 

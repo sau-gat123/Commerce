@@ -1,5 +1,5 @@
 import React from 'react'
-import "./IndividualsCart.css"
+//import "./IndividualsCart.css"
 
 const IndividualsProduct = ({products,AddToCart}) => {
       
@@ -19,7 +19,7 @@ const IndividualsProduct = ({products,AddToCart}) => {
         
        
          
-    <div className='grid'>
+    <div className='cart'>
       
 <div className='item'>
       

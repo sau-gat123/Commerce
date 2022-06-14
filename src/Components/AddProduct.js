@@ -15,7 +15,7 @@ const AddProduct = () => {
     const [successMsg,setSuccessMsg]=useState()
     const [UploadErr,setUploadErr] =useState();
     const [progess,setProgress]=useState(null)
-    
+    const [category,setCategory]=useState("")
    
     const [imageError,setEmageError]=useState('');
      const types=['image/jpg','image/png',"image/PNG",'image/jpeg'];
@@ -59,6 +59,7 @@ const AddProduct = () => {
         addDoc(collection(fs, "Product"), {
          title:title,
          description:description,
+         category:category,
          price:Number(price),
          downloadURL
         }).then(()=>{
@@ -66,6 +67,7 @@ const AddProduct = () => {
           setImage('');
           setTitle('')
           setDescription('')
+          setCategory('')
           document.getElementById("file").value='';
 
         })
@@ -103,6 +105,19 @@ setTitle(e.target.value)
           <label>Product Price</label>
           <input type="text" className="form-control" required value={price} onChange={((e)=>{setPrice(e.target.value)})}/>
           <br></br>
+          <label>Product Category</label>
+                <select className='form-control' required
+                value={category} onChange={(e)=>setCategory(e.target.value)}>                                    
+                    <option value="">Select Product Category</option>                   
+                    <option>Men</option>
+                    <option>Women</option>
+                    <option>Casual</option>
+                    <option>Formal</option>
+                    <option>Summer</option>
+                    <option>Winter</option>
+                  
+                </select>
+                <br></br>
           <label>Upload Product Image</label>
           <input type="file" id="file" className="form-control" required   onChange={handleProductImg }/>
           <br></br>

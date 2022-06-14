@@ -184,7 +184,7 @@ const Cart = () => {
         });
       }
       else{
-        ///alert("some thing went wrong in checkout");
+      alert("some thing went wrong in checkout");
         
          toast.success('Your order has been placed successfully', {
           position: 'top-right',
@@ -221,9 +221,7 @@ const key="pk_test_51L927lSGxWwnG8rhtspkqDAQn7wdaUHRuHVyzlTf4IclRSlp2r8mby5Ojf9a
     <CartProduct cartProduct={cartProduct} cartProductIncrease={cartProductIncrease} cartProductDecrease={cartProductDecrease}/>
 
     </h1>
-    <div className='products-box'>
-      
-    </div>
+   
 
   </div>
   <>

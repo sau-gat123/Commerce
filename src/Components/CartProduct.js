@@ -8,7 +8,7 @@ import "./IndividualsCart.css"
 
 
         return (
-        <div className="grid">
+        <div className="product">
         
         <IndividualCartProduct key={cartProduct.ID} cartProduct={cartProduct}  cartProductIncrease={cartProductIncrease}  cartProductDecrease={ cartProductDecrease}/>
         </div>
