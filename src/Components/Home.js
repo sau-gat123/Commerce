@@ -7,7 +7,7 @@ import {useState,useEffect} from "react"
 import {onAuthStateChanged}from "firebase/auth"
 import { collection,doc, getDoc,docs, getDocs,setDoc ,onSnapshot} from "firebase/firestore";
 import { async } from '@firebase/util'
-import { IndividualsFilterProduct } from './IndividualsFilterProduct'
+import  {IndividualsFilterProduct} from './IndividualsFilterProduct'
 
 
 
@@ -182,6 +182,70 @@ let Productsss
 // filtered product States
 
 const [filterProduct,setFilterProduct]=useState([]);
+const [spans]=useState([{
+  id:1,
+  text:"Men"
+
+
+  
+},
+{
+  id:2,
+  text:"women"
+
+
+  
+},
+{
+  id:3,
+  text:"Casual"
+
+
+  
+},
+{
+  id:4,
+  text:"Formal"
+
+
+  
+},
+{
+  id:5,
+  text:"Men"
+
+
+  
+},
+{
+  id:6,
+  text:"Summer"
+
+
+  
+}])
+const[active,setActive]=useState('');
+//category state
+const[category,setCategory]=useState('');
+ 
+const handleList=(IndividualSpan)=>{
+  filterFunction(IndividualSpan.text);
+  console.log(IndividualSpan.text);
+  
+  
+
+
+
+}
+const filterFunction=(text)=>{
+  const filter=product.filter((product)=>product.category===text)
+  setFilterProduct(filter);
+
+}
+
+
+
+
 
 
 
@@ -204,18 +268,24 @@ const [filterProduct,setFilterProduct]=useState([]);
  <br></br>
  
   <div className='filter'>
+{
+  <>
+  <ul>
+    {
+spans.map((IndividualSpan,index)=>{
+  return (<><li key={IndividualSpan.id} id={IndividualSpan.id} onClick={()=>{handleList(IndividualSpan)}}> {IndividualSpan.text}</li></>)
 
-<uL>
-<li>Men</li>
-<li>Women</li>
-<li>Casual</li>
-<li>Formal</li>
-<li>Winter</li>
-<li>Summer</li>
-</uL>
+
+})
+}
+</ul>
+</>
+
+}
 
 
   </div>
+
   
   {
   filterProduct.length>0 &&(<>
