@@ -240,8 +240,11 @@ const handleList=(IndividualSpan)=>{
 const filterFunction=(text)=>{
   const filter=product.filter((product)=>product.category===text)
   setFilterProduct(filter);
+  
+
 
 }
+console.log(filterProduct);
 
 
 
@@ -289,7 +292,10 @@ spans.map((IndividualSpan,index)=>{
   
   {
   filterProduct.length>0 &&(<>
-  <IndividualsFilterProduct/>
+  <div className='my-product'>
+    <h1 className='text-center'>Category</h1>
+  <IndividualsFilterProduct filterProduct={filterProduct} AddToCart={AddToCart}/>
+  </div>
   </>)
 
 

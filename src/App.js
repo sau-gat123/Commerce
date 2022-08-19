@@ -20,6 +20,8 @@ function App() {
   <Route path="/Login" element={<Login/>}></Route>
   <Route path="/product" element={<AddProduct/>}></Route>
   <Route path="/cart" element ={<Cart/>}></Route>
+  <Route path="/create-checkout-session" element ={<Cart/>}></Route>
+
 <Route path='*' element={<NotFound/>}></Route>
 </Routes>
   </BrowserRouter>

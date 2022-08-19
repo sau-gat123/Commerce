@@ -2,11 +2,11 @@ import React from 'react'
 import {auth,fs} from "./Config"
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { doc,setDoc } from 'firebase/firestore'
-
+import { signInWithEmailAndPassword } from 'firebase/auth'
 import {Link, Navigate} from "react-router-dom"
 import { useState } from 'react'
-import { connectStorageEmulator } from 'firebase/storage'
-import { fireEvent } from '@testing-library/react'
+
+ 
 import {  } from 'react-router-dom'
 
 const SignUp = () => {

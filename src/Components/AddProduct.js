@@ -142,4 +142,4 @@ setTitle(e.target.value)
 }
 
 
-export  {AddProduct}
+export  {AddProduct} 

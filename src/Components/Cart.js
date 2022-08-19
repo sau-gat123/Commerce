@@ -8,7 +8,7 @@ import {auth,fs} from "./Config"
 import { onSnapshot,collection,docs } from 'firebase/firestore'
 import { CartProduct } from './CartProduct'
 import { async } from '@firebase/util'
-import StripeCheckout from 'react-stripe-checkout';
+import StripeCheckout from 'react-stripe-checkout'; 
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import 'react-toastify/dist/ReactToastify.css';
@@ -235,16 +235,12 @@ const key="pk_test_51L927lSGxWwnG8rhtspkqDAQn7wdaUHRuHVyzlTf4IclRSlp2r8mby5Ojf9a
                         Total Price to Pay: <span>${TotalPrice}</span>
                         </div>
                         <br></br>
-                        <StripeCheckout 
-                        stripeKey={key}
-                        token={handleToken}
-                        billingAddress
-                        shippingAddress
-                        name='All Products'
-                        amount={TotalPrice*100}
-                        >
-                          <button className='btn btn-success'>Pay with card</button>
-                        </StripeCheckout>
+
+                        <form action="/create-checkout-session" method="POST">
+      <button type="submit">Checkout</button>
+    </form>
+                        
+                       
                     </div>  
   </>
   

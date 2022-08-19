@@ -5,11 +5,11 @@ import {minus} from 'react-icons-kit/feather/minus'
 import { Grid } from '@mui/material';
 import {auth,fs} from "./Config"
 import  {StripeCheckOut} from "react-stripe-checkout"
-
+//import "./index.css"
 
 
 import { deleteDoc,doc} from 'firebase/firestore';
-//import "./IndividualsCart.css"
+import "./IndividualsCart.css"
 import { onAuthStateChanged } from 'firebase/auth';
 const IndividualCartProduct = ({cartProduct,cartProductIncrease, cartProductDecrease}) => {
   const handleCartProductIncrease=()=>{
